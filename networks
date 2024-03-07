@@ -1,0 +1,10 @@
+Docker creates virtual interfaces for each container that are then bridged to the main network adapter.
+Docker runs it own IP addresses for each container in a different subnet from your main network.
+This offers isolation and allows each container to expose the same port but also explains why you cannot expose the same port on the host for each container.
+Only a single container can bind to port 80 on the host but many containers can expose port 80.
+
+To start lets create a second container that runs a basic http api that stores an input from the front end.
+To do this we are going to be using a predefined application made using Golang and GIN included in this directory.
+So lets turn ```backend``` into a dockerfile before we continue.
+
+

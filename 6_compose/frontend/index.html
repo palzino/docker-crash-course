@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Name to Backend</title>
+</head>
+<body>
+    <h2>Send Name to Backend</h2>
+    <form id="nameForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <input type="submit" value="Send Name">
+    </form>
+    <button id="getData">Get Response</button>
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('nameForm').onsubmit = async function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const name = formData.get('name');
+
+            // Send the name to the backend using a POST request
+            const response = await fetch('/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: name }),
+            });
+
+            if (response.ok) {
+                console.log('Name sent to backend successfully');
+            } else {
+                console.error('Error sending name to backend');
+            }
+        };
+
+        document.getElementById('getData').onclick = async function() {
+            // Fetch the response from the backend using a GET request
+            const response = await fetch('/get');
+            if (response.ok) {
+                const data = await response.json(); // Assuming the response is in JSON format
+                document.getElementById('response').textContent = JSON.stringify(data);
+            } else {
+                console.error('Error fetching data from backend');
+            }
+        };
+    </script>
+</body>
+</html>
