@@ -2,7 +2,7 @@ Python is a very popular high end language and you will often find yourself work
 
 Since Python requires its depenancies to be installed into the environment it runs from and cannot be compiled, Docker helps standardise its runtime environment. We can use a container to ensure all dependancies are installed, the correct and same version will be used everytime and environment variables also set. Environment variables are variables we might not want to expose in our online version control(Github) such as on such as secrets or passwords, but are needed for the application to run. 
 
-Now that we have some background, in the api directory we have a python app that  uses Flask to create an API. When you hit the /get route it will return the environment variable.
+Now that we have some background, in the api directory we have a python app that uses Flask to create an API. When you hit the /get route it will return the environment variable.
 
 First lets create our Dockerfile and talk through it:
 
